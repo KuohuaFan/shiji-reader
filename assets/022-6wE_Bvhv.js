@@ -1,0 +1,1 @@
+const c="022",i=22,o="https://zh.wikisource.org/zh-hant/史記三家註/卷022",t="https://zh.wikisource.org/zh-hant/史記/卷022",s=[],n=[],r={id:"022",volume:22,sanjiazhuSourceUrl:o,originalSourceUrl:t,annotations:s,criticalNotes:n};export{s as annotations,n as criticalNotes,r as default,c as id,t as originalSourceUrl,o as sanjiazhuSourceUrl,i as volume};
