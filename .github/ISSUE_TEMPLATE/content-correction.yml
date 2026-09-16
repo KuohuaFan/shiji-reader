@@ -1,0 +1,37 @@
+name: 史籍或白話內容修正
+about: 回報原文、標點、三家註、白話或年代資料問題
+title: "[內容修正] "
+labels: [content]
+body:
+  - type: dropdown
+    id: layer
+    attributes:
+      label: 內容層
+      options: [原文, 白話, 三家註, 校勘, 導讀, 人物關係, 年代軸]
+    validations:
+      required: true
+  - type: input
+    id: chapter
+    attributes:
+      label: 卷次與篇名
+      placeholder: 例如：卷一 五帝本紀
+    validations:
+      required: true
+  - type: textarea
+    id: quotation
+    attributes:
+      label: 原句或目前內容
+      description: 請只貼必要短句，不要貼入無權公開的現代譯本。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建議修改與理由
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 版本或文獻依據
+      description: 請提供書名、版本、頁碼或可開啟網址。
