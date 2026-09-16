@@ -76,6 +76,8 @@ const NON_CORPUS_PATTERNS = [
   /1931年1月1日之前出版/,
   /著作權|版权声明|版權聲明/,
   /Wikisource|維基文庫|维基文库/i,
+  /(?:^|\W)(?:header|reader|eader)\|title=/i,
+  /<\s*\/?\s*(?:a|div|span|sup)\b|data-mw|typeof=|id=["']mw/i,
 ];
 
 /** Reject export-page boilerplate that is not part of the Shiji text or Sanjiazhu. */

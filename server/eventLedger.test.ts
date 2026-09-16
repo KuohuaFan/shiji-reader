@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { TrpcContext } from "./_core/context";
 import { appRouter } from "./routers";
+import { hasValidCounterexampleCitation } from "./routers/eventLedger";
 
 const ctx = {
   user: null,
@@ -19,6 +20,25 @@ const base = {
 };
 
 describe("event ledger verification gates", () => {
+  it("requires the counterexample to cite an authentic supplied Shiji chunk", () => {
+    const citations = new Map([
+      ["v084:o-1-2", { text: "賈生以為漢興至孝文二十餘年，天下和洽，而固當改正朔。" }],
+      ["v048:s-0-0", { text: "eader|title=史記卷四十八|section=陳涉世家第十八" }],
+    ]);
+    expect(hasValidCounterexampleCitation(
+      { citationIds: ["v084:o-1-2"], counterexampleCitationId: "v084:o-1-2" },
+      citations,
+    )).toBe(true);
+    expect(hasValidCounterexampleCitation(
+      { citationIds: ["v084:o-1-2"], counterexampleCitationId: "v048:s-0-0" },
+      citations,
+    )).toBe(false);
+    expect(hasValidCounterexampleCitation(
+      { citationIds: ["v048:s-0-0"], counterexampleCitationId: "v048:s-0-0" },
+      citations,
+    )).toBe(false);
+  });
+
   it("rejects analysis without a primary source", async () => {
     const caller = appRouter.createCaller(ctx);
     await expect(caller.eventLedger.analyze({

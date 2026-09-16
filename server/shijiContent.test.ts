@@ -52,6 +52,8 @@ describe("Shiji layered content", () => {
 
   it("rejects Wikisource licensing boilerplate as historical evidence", async () => {
     expect(isAuthenticShijiEvidence("此作品在全世界都属于公有领域，因为作者逝世已经超过100年，且作品于1931年1月1日之前出版。")).toBe(false);
+    expect(isAuthenticShijiEvidence("eader|title=史記卷四十八|section=陳涉世家第十八 按：勝立數月而死。")).toBe(false);
+    expect(isAuthenticShijiEvidence("吳王不聽，遂北伐齊。<span typeof=\"mw:LanguageVariant\" id=\"mwRA\"></span>百牢。")).toBe(false);
     expect(isAuthenticShijiEvidence("太史公曰：法令所以導民也，刑罰所以禁姦也。")).toBe(true);
     const chunks = await retrieveAcrossShiji("選舉 聯盟 政黨 組閣", ["原文", "集解", "索隱", "正義"]);
     expect(chunks.length).toBeGreaterThan(1);
